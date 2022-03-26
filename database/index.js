@@ -2,9 +2,9 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'student',
-  password: 'student',
-  database: 'YOUR_DATABASE_NAME_HERE'
+  user: 'root',
+  password: '',
+  database: 'cowlist'
 });
 
 connection.connect((err) => {
@@ -16,9 +16,31 @@ connection.connect((err) => {
 });
 
 // Your Database Queries Here!!
+const get = (cb=()=>{}) => {
+  connection.query('SELECT * FROM cows', (err, data)=>{
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('Delivering data: ', data)
+      cb(data) //[]
+    }
+  })
+}
 
+const post = (name, description, cb=()=>{}) => {
+  console.log('triggered post!')
+  connection.query(`INSERT INTO cows VALUES ('${name}', '${description}');`, (err, data)=>{
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('Delivering data: ', data)
+      cb(data) //[]
+    }
+  })
+}
 
 // Don't forget to export your functions!
 module.exports = {
-  connection:connection
-};
+  get: get,
+  post: post
+}

@@ -1,20 +1,22 @@
 import React from 'react';
 
 class Cowlist extends React.Component {
-
   constructor(props){
     super(props)
-    this.state = {
-      Temp:'temp'
+    this.state={
+      cows:undefined
     }
-    // this.state.cows=props.statecopy.cows
+    this.activecow = props.activecow
+    this.activateCow = props.activateCow
   }
-
   render(){
+    var cows = this.props.cows
     return(
       <div>
-        {this.state.cows.map((cowobj)=>
-        <li>{cowobj.name}</li>)}
+        <div>
+          {cows.map((cowobj)=>
+          <li id={cowobj.name} onClick={()=>{this.activateCow(event.target.id)}}>{cowobj.name}</li>)}
+        </div>
       </div>
     )
   }
