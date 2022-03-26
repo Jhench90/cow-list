@@ -18,10 +18,7 @@ connection.connect((err) => {
 // Your Database Queries Here!!
 
 
-
-
-
 // Don't forget to export your functions!
 module.exports = {
-
+  connection:connection
 };

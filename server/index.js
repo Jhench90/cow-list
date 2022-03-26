@@ -6,7 +6,9 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.get('/', (req, res) => {
+app.get('/api/cows', (req, res) => {
+  console.log('Serving get request to api/cows')
+
   res.send('Hello from the server!');
 })
 
